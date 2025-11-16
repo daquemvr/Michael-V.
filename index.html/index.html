@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dre Computer Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style2.css">
+      
+    
+</head>
+<body>
+  <!--Header Section-->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">💻</span>
+      <span class="highlight">DRE Computer <span class="extra">Center</span></span>
+    </div>
+
+    
+
+
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+   
+    <nav>
+  <ul id="nav-list">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#laptops">Products</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#visit">Visit Us</a></li>
+    <li><a href="#services">Services</a>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#testimonials">Testimonial</a>
+    </li>
+  </ul>
+
+</nav>
+
+    <!-- 🌐 Popup Buttons --> 
+    <div class="auth-buttons">
+      <!-- Search -->
+      <input type="search" id="product-search" placeholder="Search products..." aria-label="Search products">
+      <a href="#signup" class="signup-btn">Sign Up</a>
+      <a href="#login" class="login-btn">Log In</a>
+
+      
+      <!-- FAVORITES ICON -->
+<div id="fav-btn" class="fav-btn">
+  <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Favorites" style="width:30px;">
+  <span id="fav-count">0</span>
+</div>
+
+<!-- FAVORITES MODAL -->
+<div id="favorites" class="modal">
+  <div class="modal-content">
+    <a href="index.html" class="modal-close-x">✖</a>
+    <div class="cart-header">
+      <h2>❤️ Your Favorites</h2>
+      <a href="#" class="close">Close</a>
+    </div>
+    <div id="fav-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <button id="clear-fav-btn" class="checkout-btn" style="background:#e74c3c;">Clear Favorites</button>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Cart Button -->
+      <div class="cart-btn" id="cart-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Cart">
+        <span id="cart-count">0</span>
+      </div>
+
+      
+
+      <!-- Mini Cart Preview -->
+      <div id="mini-cart" class="mini-cart">
+          <h4>🛒 Cart Preview</h4>
+          <div id="mini-cart-items"></div>
+          <div id="mini-cart-total">Total: ₱0</div>
+          <button id="view-cart-btn">View Cart</button>
+      </div>
+
+
+      <div id="cart" class="modal">
+          <div class="modal-content">
+            <a href="index.html" class="modal-close-x">✖</a>
+              <div class="cart-header">
+                 <h2>Your Cart</h2>
+                 <a href="#" class="close">Close</a>
+              </div>
+              <div id="cart-items" class="cart-items"></div>
+              <div class="cart-footer">
+                    <div id="cart-total">Total: ₱0</div>
+                    <button id="clear-cart-btn" class="checkout-btn" style="background:#e74c3c;">Clear Cart</button>
+                    <button id="checkout-btn" class="checkout-btn">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- RECEIPT MODAL -->
+<div id="receipt" class="modal">
+  <div class="modal-content">
+    <a href="#" class="modal-close-x">X</a>
+    <h2>Receipt</h2>
+    <div id="form">
+      <input type="text" id="name" placeholder="Name" required><br><br>
+      <input type="text" id="addr" placeholder="Address" required><br><br>
+      <input type="email" id="email" placeholder="Gmail" required><br><br>
+      <button id="gen">Make Receipt</button>
+    </div>
+    <div id="show" style="display:none; margin-top:15px;">
+      <p id="info"></p>
+      <div id="items"></div>
+      <p id="total"></p>
+      <p>Thank you!</p>
+    </div>
+  </div>
+</div>
+  </header>
+
+
+
+  
+
+  <!-- 💚 Sign Up Modal -->
+  <div id="signup" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close-x">✖</a>
+      <h2>Create Account</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required><br>
+        <input type="email" placeholder="Email" required><br>
+        <input type="password" placeholder="Password" required><br>
+        <button type="submit" class="signup-btn-modal">Sign Up</button>
+        <p>Already have an account? <a href="#login">Log In</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🔵 Login Modal -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close-x">✖</a>
+      <h2>Welcome Back</h2>
+      <form>
+        <input type="email" placeholder="Email" required><br>
+        <input type="password" placeholder="Password" required><br>
+        <p><a href="#forgot">Forgot Password?</a></p>
+        <button type="submit" class="login-btn-modal">Log In</button>
+        <p>Don’t have an account? <a href="#signup">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🔐 Forgot Password Modal -->
+  <div id="forgot" class="modal">
+    <div class="modal-content">
+      <h2>Reset Password</h2>
+      <form>
+        <input type="email" placeholder="Enter your email" required><br>
+        <button type="submit" class="login-btn-modal">Send Reset Link</button>
+      </form>
+      <a href="#login" class="close">Back to Login</a>
+    </div>
+  </div>
+
+ 
+
+  <!-- 💚 Wishlist Modal -->
+  <div id="wishlist" class="modal">
+    <div class="modal-content">
+      <div class="cart-header">
+        <h2>Your Favorites</h2>
+        <a href="#top" class="close">Close</a>
+      </div>
+      <div id="favorites-list" style="margin:20px 0;"></div>
+      <div class="cart-footer">
+        <div style="display:flex;gap:8px;">
+          <button id="clear-wishlist-btn" class="checkout-btn" style="background:#e74c3c;">Clear Favorites</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+    
+
+
+  <!--Hero Section-->
+  <section id="home" class="hero">
+    <video class="video-background" autoplay muted loop playsinline>
+      <source src="DREComputer.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <img src="dre.jpg" alt="Logo">
+      <h1>DRE Computer Center</h1>
+      <p>We Make IT Easy</p>
+    </div>
+  </section>
+
+
+  <!-- Menu Section -->
+<section id="laptops" class="menu">
+  <h2>💻 Laptops</h2>
+
+  <!-- FILTERS & SORTING -->
+  
+    <div class="product-controls">
+
+      <!-- Search -->
+      <div class="control-item search-box">
+        <input type="text" id="search-input" placeholder="Search laptops..." />
+        <span class="search-icon">Search</span>
+      </div>
+
+      <!-- Brand Filter -->
+      <div class="control-item">
+        <select id="brand-filter">
+          <option value="all">All Brands</option>
+          <option value="lenovo">Lenovo</option>
+          <option value="asus">ASUS</option>
+          <option value="acer">Acer</option>
+          <option value="dell">Dell</option>
+          <option value="toshiba">Toshiba</option>
+          <option value="ningmei">Ningmei</option>
+        </select>
+      </div>
+
+      <!-- Sort -->
+      <div class="control-item">
+        <select id="sort-price">
+          <option value="default">Sort by</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+        </select>
+      </div>
+
+      <!-- Clear -->
+      <div class="control-item">
+        <button id="clear-filters" class="clear-btn">Clear</button>
+      </div>
+    </div>
+    <br>
+    <!-- Products Grid -->
+    <div class="menu-grid">
+      
+      <div class="product1">
+        <img src="Product2.jpg" alt="ASUS">
+        <h3>ASUS X1605ZA-MB065WS</h3>
+        <p class="price">₱34,995</p> 
+
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+        
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product3.jpg" alt="">
+        <h3>ACER ASPIRE LITE  AL14-51M-57H1</h3>
+        <p class="price">₱35,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product4.jpg" alt="">
+        <h3>ACER ASPIRE 15 A15-51M56E2</h3>
+        <p class="price">₱39,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product5.jpg" alt="">
+        <h3>LENOVO SLIM IPS3 15ABR8 82XM00FUPH</h3>
+        <p class="price">₱32,995</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product6.jpg" alt="">
+        <h3>ASUS  X1605A-MB095W</h3>
+        <p class="price">₱22,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product7.jpg" alt="">
+        <h3>ASUS  TUF F15 FX5077C4-HN081W</h3>
+        <p class="price">₱54,995</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product8.jpg" alt="">
+        <h3>ASUS TUF F15 FX506HF-HN308W</h3>
+        <p class="price">₱53,000</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product9.jpg" alt="">
+        <h3>LENOVO SLIM IPS3 15IRH8 83EM009CPH</h3>
+        <p class="price">₱51,995</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product10.jpg" alt="">
+        <h3>ASUS  E1404VA-NK 766WSM</h3>
+        <p class="price">₱34,995</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product11.jpg" alt="">
+        <h3>ACER ASPIRE G 15 AG15-51P-53K1</h3>
+        <p class="price">₱35,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product12.jpg" alt="">
+        <h3>ASUS  E1404GA-NK350WSM</h3>
+        <p class="price">₱22,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product13.jpg" alt="">
+        <h3>ACER ASPIRE LITE 14 AL14-32P-392P</h3>
+        <p class="price">₱26,999</p>
+       <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product14.jpg" alt="">
+        <h3>ACER ASPIRE LITE 14 AL14-32P-C5PN</h3>
+        <p class="price">₱23,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product15.jpg" alt="">
+        <h3> NINGMEI CLR201 SLIM LAPTOP</h3>
+        <p class="price">₱13,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product16.jpg" alt="">
+        <h3>NINGMEI CLR201 SLIM LAPTOP</h3>
+        <p class="price">₱14,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+
+     <div class="product1">
+        <img src="Product17.jpg" alt="">  
+        <h3>TOSHIBA DYNABOOK R73</h3>  
+        <p class="price">₱13,499</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product18.jpg" alt="">
+        <h3>DELL LATITUDE 3560</h3>
+        <p class="price">₱8,795</p>
+       <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product19.jpg" alt="">
+        <h3>DELL LATITUDE 7390</h3>
+        <p class="price">₱14,999</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product20.jpg" alt="">
+        <h3>DELL VOSTRO 15 3568</h3>
+        <p class="price">₱10,499</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite">Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product21.jpg" alt="">
+        <h3>DELL VOSTRO 15 3568</h3>
+        <p class="price">₱11,299</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product22.jpg" alt="">
+        <h3> HP PROBOOK 450 G3</h3>
+        <p class="price">₱13,499</p>
+       <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product23.jpg" alt="">
+        <h3>LENOVO THINKPAD E570</h3>
+        <p class="price">₱9,495</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product24.jpg" alt="">
+        <h3>LENOVO THINKPAD L570</h3>
+        <p class="price">₱8,995</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product25.jpg" alt="">
+        <h3>LENOVO THINKPAD L570 </h3>
+        <p class="price">₱9,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product26.jpg" alt="">
+        <h3>TOSHIBA DYNABOOK B35</h3>
+        <p class="price">₱7,990</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+
+     <div class="product1">
+        <img src="Product27.jpg" alt="">
+        <h3> TOSHIBA DYNABOOK B65</h3>
+        <p class="price">₱11,699</p>
+       <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product27.jpg" alt="">
+        <h3> TOSHIBA DYNABOOK B65</h3>
+        <p class="price">₱11,699</p>
+        <div class="button-group">
+         <button class="add-to-cart"> Add to Cart</button>
+         <button class="add-to-favorite"> Add to Favorites</button>
+       </div>
+     </div>
+
+
+    </div>
+  </div>
+
+</section>  
+
+
+<!-- About Section -->
+<section id="about" class="about">
+  <h1 class="section-title">About Us</h1>
+  <div class="about-content">
+    <div class="video-container">
+      <video class="about-video" autoplay muted loop playsinline>
+        <source src="Logo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="about-text">
+      <h1>DRE</h1>
+      <h2>Computer Center</h2>
+      <p>
+        Dre Computer Center is your go-to destination for all things tech. Established in 2010,
+        we have been committed to providing top-notch computer products and services to our community.
+        Our mission is to make technology accessible and affordable for everyone.
+      </p>
+      <p>
+        At Dre Computer Center, we pride ourselves on our extensive selection of laptops, desktops,
+        accessories, and peripherals from leading brands. Our knowledgeable staff is always ready to assist you
+        in finding the perfect device to suit your needs and budget.
+      </p>
+      <p>
+        Whether you're a student, professional, or tech enthusiast, we have something for you.
+        From the latest laptops and accessories to expert repair services,
+        Dre Computer Center is here to help you stay connected and productive.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services">
+  <h1 class="section-title">Our Services</h1>
+  <div class="services-content">
+    <div class="service-item">
+      <h3>Computer Repair</h3>
+      <p>
+        Expert diagnostics and repair for laptops and desktops, fixing hardware and software issues to get your device back to peak performance.
+      </p>
+    </div>
+    <div class="service-item">
+      <h3>Hardware Upgrades</h3>
+      <p>
+        Boost your device’s speed and storage with professional upgrades, including RAM, SSDs, and graphics cards, tailored to your needs.
+      </p>
+    </div>
+    <div class="service-item">
+      <h3>Software Installation</h3>
+      <p>
+        Hassle-free installation of operating systems, applications, and drivers, ensuring optimal setup and security for your device.
+      </p>
+    </div>
+    <div class="service-item">
+      <h3>Tech Consultation</h3>
+      <p>
+        Personalized advice to help you choose the right devices, accessories, or solutions for your home, office, or gaming setup.
+      </p>
+    </div>
+    <div class="service-item">
+      <h3>Data Recovery</h3>
+      <p>
+        Professional recovery services to retrieve lost or corrupted data from hard drives, SSDs, and other storage devices.
+      </p>
+    </div>
+    <div class="service-item">
+      <h3>Computer Set-up</h3>
+      <p>
+        We provide complete computer setup and configuration for offices, gaming stations, and personal use.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials">
+  <h1 class="section-title">Testimonials</h1>
+  <div class="testimonials-content">
+    <div class="testimonial-item">
+      <div class="testimonial-image">
+        <img src="Costumer1.jpg" alt="Customer Maria Santos">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">
+          "DRE Computer Center fixed my laptop in no time! Their service is fast, reliable, and affordable."
+        </p>
+        <div class="testimonial-rating">
+          ⭐⭐⭐⭐⭐
+        </div>
+        <h3 class="testimonial-name">Maria Santos</h3>
+        <p class="testimonial-role">Student</p>
+      </div>
+    </div>
+    <div class="testimonial-item">
+      <div class="testimonial-image">
+        <img src="Costumer2.jpg" alt="Customer Juan Dela Cruz">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">
+          "The staff helped me choose the perfect gaming laptop. Highly knowledgeable and friendly!"
+        </p>
+        <div class="testimonial-rating">
+          ⭐⭐⭐⭐⭐
+        </div>
+        <h3 class="testimonial-name">Juan Dela Cruz</h3>
+        <p class="testimonial-role">Gamer</p>
+      </div>
+    </div>
+    <div class="testimonial-item">
+      <div class="testimonial-image">
+        <img src="Costumer8.jpg" alt="Customer Anna Reyes">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">
+          "Upgraded my PC’s SSD and RAM here. The process was seamless, and my system is now super fast!"
+        </p>
+        <div class="testimonial-rating">
+          ⭐⭐⭐⭐
+        </div>
+        <h3 class="testimonial-name">Anna Reyes</h3>
+        <p class="testimonial-role">Freelancer</p>
+      </div>
+    </div>
+    <div class="testimonial-item">
+      <div class="testimonial-image">
+        <img src="Costumer4.jpg" alt="Customer Carlos Mendoza">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">
+          "Their tech consultation saved me from buying the wrong laptop. Truly customer-focused service!"
+        </p>
+        <div class="testimonial-rating">
+          ⭐⭐⭐⭐⭐
+        </div>
+        <h3 class="testimonial-name">Carlos Mendoza</h3>
+        <p class="testimonial-role">Business Owner</p>
+      </div>
+    </div>
+    <div class="testimonial-item">
+      <div class="testimonial-image">
+        <img src="Costumer5.jpg" alt="Customer Lisa Gomez">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">
+          "I had a great experience with DRE Computer Center. They helped me recover important files I thought were lost forever."
+        </p>
+        <div class="testimonial-rating">
+          ⭐⭐⭐⭐⭐
+        </div>
+        <h3 class="testimonial-name">Lisa Gomez</h3>
+        <p class="testimonial-role">Photographer</p>
+    </div>
+    
+    <div class="testimonial-item">
+      <div class="testimonial-image">
+        <img src="Costumer6.jpg" alt="Customer Mark Villanueva">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">
+          "The computer setup service was excellent. My home office is now fully functional and efficient."
+        </p>
+        <div class="testimonial-rating">
+          ⭐⭐⭐⭐
+        </div>
+        <h3 class="testimonial-name">Mark Villanueva</h3>
+        <p class="testimonial-role">Remote Worker</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Location Section -->
+<section id="location" class="location">
+  <h1 class="section-title">Find Us</h1>
+  <div class="location-content">
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!4v1761734219535!6m8!1m7!1sbCaoH8lCLOIQXUhhYKxXBA!2m2!1d13.93963633826697!2d121.6134526547909!3f105.77947900184799!4f-14.205078729658922!5f0.7820865974627469"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="location-info">
+      <div class="info-card">
+        <h3>💻 DRE Computer Center</h3>
+        <p>📍 44 Quezon Ave, Lucena City, Quezon, Philippines</p>
+        <p>📞 0999-123-4567</p>
+        <p>✉️ drecomputercenter@gmail.com</p>
+        <a href="https://www.google.com/maps/place/44+Quezon+Ave,+Lucena+City,+Quezon/"
+           target="_blank"
+           class="direction-btn">Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <h1 class="section-title">Contact Us</h1>
+  <div class="contact-content">
+    <div class="contact-form-container">
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required aria-label="Your Name">
+        <input type="email" placeholder="Your Email" required aria-label="Your Email">
+        <textarea placeholder="Your Message" required aria-label="Your Message"></textarea>
+        <button type="submit" class="contact-btn">Send Message</button>
+      </form>
+    </div>
+    <div class="contact-info">
+      <div class="info-card">
+        <h3>📬 Get in Touch</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 44 Quezon Ave, Lucena City, Quezon</p>
+        <p><i class="fas fa-phone"></i> 0999-123-4567</p>
+        <p><i class="fas fa-envelope"></i> drecomputercenter@gmail.com</p>
+        <p><i class="fas fa-clock"></i> Mon–Sat: 9AM–6PM | Sun: 10AM–4PM</p>
+        
+        <p>📱 Follow us: 
+          <a href="#" style="color: #00d9ff;">Facebook</a> | 
+          <a href="#" style="color: #00d9ff;">Instagram</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Visit Us Section -->
+<section id="visit" class="visit">
+  <h1 class="section-title">Visit Us</h1>
+  <div class="visit-content">
+    <p>
+      We'd love to see you in person! Visit our store for personalized service, expert advice, and a hands-on look at our latest products.
+    </p>
+    <a href="https://www.google.com/maps/place/44+Quezon+Ave,+Lucena+City,+Quezon/"
+       target="_blank"
+       class="direction-btn">📍 Get Directions</a>
+    <div class="social-links">
+      <a href="https://www.facebook.com/drecomputercenterofficial/photos" class="social-btn facebook">Facebook</a>
+      <a href="https://www.instagram.com/drecomputercenter.official?igsh=MXF3YXV2Y2dkMGJjZQ==" class="social-btn instagram">Instagram</a>
+      <a href="https://x.com/search?q=Dre%20Computer%20Center&src=typed_query" class="social-btn twitter">Twitter</a>
+      <a href="https://www.tiktok.com/@dre.computer.center" class="social-btn tiktok">TikTok</a>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- Footer Section -->
+<footer id="footer" class="footer">
+  
+  <div class="footer-content">
+   <div class="footer-bottom">
+     <p>&copy; 2025 DRE Computer Center. All rights reserved.</p>
+    </div>
+  </div>
+
+
+</footer>
+<script>
+
+</script>
+<script src="script.js"></script>
+<script src="script2.js"></script>
+</body>
+</html>
+
+ 
