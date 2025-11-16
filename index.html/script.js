@@ -291,58 +291,77 @@ navLinks.forEach((link) => {
   });
 });
 
-// ---- DOM elements -------------------------------------------------
-const grid          = document.getElementById('product-grid');
-const searchInput   = document.getElementById('search-input');
-const brandFilter   = document.getElementById('brand-filter');
-const sortSelect    = document.getElementById('sort-price');
-const clearBtn      = document.getElementById('clear-filters');
+// PRODUCT FILTERS & SORTING (THEMED & RESPONSIVE)
+document.addEventListener('DOMContentLoaded', function () {
+  const products = document.querySelectorAll('.product1');
+  const searchInput = document.getElementById('search-input');
+  const brandFilter = document.getElementById('brand-filter');
+  const sortPrice = document.getElementById('sort-price');
+  const clearBtn = document.getElementById('clear-filters');
+  const menuGrid = document.querySelector('.menu-grid');
 
-// ---- Helper: get numeric price ------------------------------------
-function getPrice(card) {
-  // data-price attribute is already numeric
-  return parseInt(card.dataset.price, 10);
-}
+  function filterAndSort() {
+    let filtered = Array.from(products);
 
-// ---- Main filter + sort -------------------------------------------
-function applyFilters() {
-  const query   = searchInput.value.trim().toLowerCase();
-  const brand   = brandFilter.value;
-  const sort    = sortSelect.value;
+    // Search
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    if (searchTerm) {
+      filtered = filtered.filter(p => {
+        const title = p.querySelector('h3').textContent.toLowerCase();
+        return title.includes(searchTerm);
+      });
+    }
 
-  const cards = Array.from(grid.querySelectorAll('.product1'));
+    // Brand
+    const brand = brandFilter.value;
+    if (brand !== 'all') {
+      filtered = filtered.filter(p => {
+        const title = p.querySelector('h3').textContent.toLowerCase();
+        return title.includes(brand);
+      });
+    }
 
-  // 1. Filter
-  cards.forEach(card => {
-    const matchesSearch = card.querySelector('h3').textContent.toLowerCase().includes(query);
-    const matchesBrand  = brand === 'all' || card.dataset.brand === brand;
-    card.classList.toggle('hidden', !(matchesSearch && matchesBrand));
+    // Sort
+    const sort = sortPrice.value;
+    if (sort === 'low' || sort === 'high') {
+      filtered.sort((a, b) => {
+        const priceA = parsePrice(a.querySelector('.price').textContent);
+        const priceB = parsePrice(b.querySelector('.price').textContent);
+        return sort === 'low' ? priceA - priceB : priceB - priceA;
+      });
+    }
+
+    // Update Grid
+    menuGrid.innerHTML = '';
+    if (filtered.length === 0) {
+      menuGrid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align:center; padding:40px; color:#999;">
+          <p style="font-size:1.2rem; margin:0;">No products found.</p>
+          <p style="font-size:0.9rem; margin-top:8px; color:#666;">Try adjusting your filters.</p>
+        </div>`;
+    } else {
+      filtered.forEach(p => menuGrid.appendChild(p));
+    }
+  }
+
+  function parsePrice(text) {
+    return parseInt(text.replace('₱', '').replace(',', '').trim()) || 0;
+  }
+
+  // Events
+  searchInput.addEventListener('input', filterAndSort);
+  brandFilter.addEventListener('change', filterAndSort);
+  sortPrice.addEventListener('change', filterAndSort);
+
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    brandFilter.value = 'all';
+    sortPrice.value = 'default';
+    filterAndSort();
   });
 
-  // 2. Sort (only visible cards)
-  const visible = cards.filter(c => !c.classList.contains('hidden'));
-  visible.sort((a, b) => {
-    if (sort === 'low')  return getPrice(a) - getPrice(b);
-    if (sort === 'high') return getPrice(b) - getPrice(a);
-    return 0; // default = original order
-  });
-
-  // Re-append in sorted order
-  visible.forEach(c => grid.appendChild(c));
-}
-
-// ---- Event listeners -----------------------------------------------
-searchInput.addEventListener('input', applyFilters);
-brandFilter.addEventListener('change', applyFilters);
-sortSelect.addEventListener('change', applyFilters);
-
-clearBtn.addEventListener('click', () => {
-  searchInput.value = '';
-  brandFilter.value = 'all';
-  sortSelect.value = 'default';
-  applyFilters();
+  // Initial
+  filterAndSort();
 });
 
-// ---- Initial run ---------------------------------------------------
-applyFilters();
 
